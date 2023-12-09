@@ -1,8 +1,22 @@
+import { generateCards } from "../create.js";
+
 // Получаем элементы карт
-const cards = document.querySelectorAll(".memory-card");
+
+const gameBoard = document.querySelector(".memory-game");
+const startButton = document.getElementById("start-game");
+
+startButton.addEventListener("click", () => {
+  generateCards(4, gameBoard);
+  addCardListeners();
+});
+
+function addCardListeners() {
+  const cards = document.querySelectorAll(".memory-card");
+  cards.forEach((card) => card.addEventListener("click", flipCard));
+}
 
 let hasFlippedCard = false;
-let lockBoard = false; // Блокировка доски
+let lockBoard = false;
 let firstCard, secondCard;
 
 // Функция для переворота карты
@@ -38,4 +52,4 @@ function flipCard() {
   }
 }
 
-cards.forEach((card) => card.addEventListener("click", flipCard));
+// cards.forEach((card) => card.addEventListener("click", flipCard));
