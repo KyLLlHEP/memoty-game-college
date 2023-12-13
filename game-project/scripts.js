@@ -4,10 +4,40 @@ import { generateCards } from "../create.js";
 
 const gameBoard = document.querySelector(".memory-game");
 const startButton = document.getElementById("start-game");
+//--//
+function adjustCardSize(pairCount) {
+  const totalCards = pairCount * 2;
+  const gameBoard = document.querySelector(".memory-game");
+  const cards = gameBoard.querySelectorAll(".memory-card");
+
+  // Расчет ширины и высоты каждой карточки
+  let containerWidth = gameBoard.offsetWidth; // Ширина контейнера
+  let containerHeight = gameBoard.offsetHeight; // Высота контейнера
+  let cardSize;
+
+  if (totalCards <= 4) {
+    // Для 2 пар (4 карточки)
+    cardSize = Math.min(containerWidth, containerHeight) / 2 - 10; // Две карточки в ряду
+  } else {
+    // Для 3 и более пар
+    let rows = Math.ceil(Math.sqrt(totalCards)); // Количество рядов
+    cardSize = Math.min(containerWidth, containerHeight) / rows - 10; // Равномерное распределение карточек
+  }
+
+  cards.forEach((card) => {
+    card.style.width = `${cardSize}px`;
+    card.style.height = `${cardSize}px`;
+  });
+}
+//--//
 
 startButton.addEventListener("click", () => {
-  generateCards(4, gameBoard);
+  const pairCount = 4;
+  generateCards(pairCount, gameBoard);
   addCardListeners();
+  adjustCardSize(pairCount);
+  // generateCards(3, gameBoard);
+  // addCardListeners();
 });
 
 function addCardListeners() {

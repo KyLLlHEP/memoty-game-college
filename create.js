@@ -51,22 +51,3 @@ function shuffle(array) {
   }
   return array;
 }
-
-// export function generateCards(level, gameBoard) {
-//   const pairs = level;
-//   let selectedImages = shuffle(images.slice(0, pairs));
-//   selectedImages = [...selectedImages, ...selectedImages];
-//   selectedImages = shuffle(selectedImages);
-
-//   gameBoard.innerHTML = "";
-
-//   selectedImages.forEach((img) => {
-//     const cardHTML = `
-//       <div class="memory-card" data-pictures="${img}">
-//         <img class="front-face" src="img/${img}" alt="${img}" />
-//         <img class="back-face" src="img/Back-face.png" alt="memory-card" />
-//       </div>
-//     `;
-//     gameBoard.innerHTML += cardHTML;
-//   });
-// }
