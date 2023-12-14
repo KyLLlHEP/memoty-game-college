@@ -1,4 +1,4 @@
-import { generateCards } from "../create.js";
+import { generateCards } from "./create.js";
 
 // Get element card
 
