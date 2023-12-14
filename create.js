@@ -36,13 +36,13 @@ export function generateCards(level, gameBoard) {
   });
 }
 
-// Функция для выбора случайных уникальных изображений
+// Function for random image
 function getRandomImages(images, count) {
   let shuffledImages = shuffle([...images]);
   return shuffledImages.slice(0, count);
 }
 
-// Функция shuffle остается прежней
+//  shuffle card
 
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {

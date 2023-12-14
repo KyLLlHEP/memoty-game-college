@@ -1,27 +1,104 @@
 import { generateCards } from "../create.js";
 
-// Получаем элементы карт
+// Get element card
 
 const gameBoard = document.querySelector(".memory-game");
 const startButton = document.getElementById("start-game");
-//--//
+
+//
+let currentLevel = 1;
+let pairCount = 2;
+let matchedPairs = 0;
+
+function startGame() {
+  startLevel();
+  startButton.removeEventListener("click", startGame); // Delite click after first start
+}
+
+function startLevel() {
+  matchedPairs = 0; //Resetting the counter of found pairs
+  clearBoard();
+  generateCards(pairCount, gameBoard);
+  addCardListeners();
+  adjustCardSize(pairCount);
+}
+
+function clearBoard() {
+  gameBoard.innerHTML = "";
+}
+
+startButton.addEventListener("click", startGame);
+
+//
+function flipCard() {
+  if (lockBoard) return;
+  if (this === firstCard) return;
+
+  this.classList.add("flip");
+
+  if (!hasFlippedCard) {
+    // First click
+    hasFlippedCard = true;
+    firstCard = this;
+  } else {
+    // Second click
+    hasFlippedCard = false;
+    secondCard = this;
+
+    if (firstCard.dataset.pictures === secondCard.dataset.pictures) {
+      // Card matched
+      firstCard.removeEventListener("click", flipCard);
+      secondCard.removeEventListener("click", flipCard);
+
+      // Add counter find card
+      matchedPairs++;
+
+      // Check all cards find
+      if (matchedPairs === pairCount) {
+        // If all cards open go next level
+        setTimeout(nextLevel, 1000);
+      }
+    } else {
+      // Card no matched , clouse card
+      lockBoard = true;
+      setTimeout(() => {
+        firstCard.classList.remove("flip");
+        secondCard.classList.remove("flip");
+        lockBoard = false;
+      }, 1500);
+    }
+  }
+}
+
+function nextLevel() {
+  currentLevel++;
+  if (currentLevel <= 10) {
+    pairCount = currentLevel + 1;
+    startLevel();
+  } else {
+    console.log("Congragulation");
+    // End game. Need video content add.
+  }
+}
+//
+
 function adjustCardSize(pairCount) {
   const totalCards = pairCount * 2;
   const gameBoard = document.querySelector(".memory-game");
   const cards = gameBoard.querySelectorAll(".memory-card");
 
-  // Расчет ширины и высоты каждой карточки
-  let containerWidth = gameBoard.offsetWidth; // Ширина контейнера
-  let containerHeight = gameBoard.offsetHeight; // Высота контейнера
+  // Size calculate cards
+  let containerWidth = gameBoard.offsetWidth; // With container
+  let containerHeight = gameBoard.offsetHeight; // Hight container
   let cardSize;
 
   if (totalCards <= 4) {
-    // Для 2 пар (4 карточки)
-    cardSize = Math.min(containerWidth, containerHeight) / 2 - 10; // Две карточки в ряду
+    // for 2 pair cards(4 cards)
+    cardSize = Math.min(containerWidth, containerHeight) / 2 - 10; // Two card in line
   } else {
-    // Для 3 и более пар
-    let rows = Math.ceil(Math.sqrt(totalCards)); // Количество рядов
-    cardSize = Math.min(containerWidth, containerHeight) / rows - 10; // Равномерное распределение карточек
+    // for 3 pairs and over
+    let rows = Math.ceil(Math.sqrt(totalCards)); // Number of rows
+    cardSize = Math.min(containerWidth, containerHeight) / rows - 10; // Even distribution of cards
   }
 
   cards.forEach((card) => {
@@ -29,15 +106,12 @@ function adjustCardSize(pairCount) {
     card.style.height = `${cardSize}px`;
   });
 }
-//--//
 
 startButton.addEventListener("click", () => {
-  const pairCount = 4;
+  const pairCount = 2;
   generateCards(pairCount, gameBoard);
   addCardListeners();
   adjustCardSize(pairCount);
-  // generateCards(3, gameBoard);
-  // addCardListeners();
 });
 
 function addCardListeners() {
@@ -48,38 +122,3 @@ function addCardListeners() {
 let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;
-
-// Функция для переворота карты
-function flipCard() {
-  if (lockBoard) return; // Предотвращаем переворачивание, если доска заблокирована
-  if (this === firstCard) return; // Предотвращаем двойной клик на одну и ту же карту
-
-  this.classList.add("flip");
-
-  if (!hasFlippedCard) {
-    // Первый клик
-    hasFlippedCard = true;
-    firstCard = this;
-  } else {
-    // Второй клик
-    hasFlippedCard = false;
-    secondCard = this;
-
-    // Проверяем, совпадают ли карты
-    if (firstCard.dataset.pictures === secondCard.dataset.pictures) {
-      // Карты совпадают
-      firstCard.removeEventListener("click", flipCard);
-      secondCard.removeEventListener("click", flipCard);
-    } else {
-      // Карты не совпадают, закрываем их
-      lockBoard = true; // Блокируем доску
-      setTimeout(() => {
-        firstCard.classList.remove("flip");
-        secondCard.classList.remove("flip");
-        lockBoard = false; // Разблокируем доску
-      }, 1500);
-    }
-  }
-}
-
-// cards.forEach((card) => card.addEventListener("click", flipCard));
