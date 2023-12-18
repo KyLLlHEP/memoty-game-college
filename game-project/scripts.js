@@ -3,7 +3,7 @@ import { generateCards } from "./create.js";
 // Get element card
 
 const gameBoard = document.querySelector(".memory-game");
-const startButton = document.getElementById("start-game");
+const startButton = document.querySelector(".start-game");
 
 //
 let currentLevel = 1;
@@ -11,6 +11,7 @@ let pairCount = 2;
 let matchedPairs = 0;
 
 function startGame() {
+  modal.style.display = "none";
   startLevel();
   startButton.removeEventListener("click", startGame); // Delite click after first start
 }
@@ -122,3 +123,41 @@ function addCardListeners() {
 let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;
+
+// GAME RULES
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Получаем модальное окно
+  const modal = document.getElementById("rulesModal");
+
+  // Получаем кнопку, которая открывает модальное окно
+  const rulesBtn = document.querySelector(".rules-game");
+
+  // Получаем кнопку "Restart"
+  const restartBtn = document.querySelector(".restart-game");
+
+  // Получаем элемент <span>, который закрывает модальное окно
+  const span = document.getElementsByClassName("close-button")[0];
+
+  // Когда пользователь нажимает на кнопку "Game Rules", открываем модальное окно
+  rulesBtn.onclick = function () {
+    modal.style.display = "block";
+  };
+
+  // Когда пользователь нажимает на <span> (x), закрываем модальное окно
+  span.onclick = function () {
+    modal.style.display = "none";
+  };
+
+  // Когда пользователь кликает вне модального окна, оно закрывается
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+
+  // Логика для кнопки "Restart"
+  restartBtn.onclick = function () {
+    location.reload(); // Перезагрузка страницы
+  };
+});

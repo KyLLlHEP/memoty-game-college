@@ -37,11 +37,43 @@
       </div>
     </header>
     <div class="buttons-container">
-      <button id="start-game">Start Game</button>
-      <button id="rules-game">Game Rules</button>
-      <button id="restart-game">Restart</button>
+      <button class="start-game">Start Game</button>
+      <button class="rules-game">Game Rules</button>
+      <button class="restart-game">Restart</button>
     </div>
     <div class="memory-game"></div>
+    <!-- Modal window -->
+    <div id="rulesModal" class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2 class="rulest-title">Game Rules</h2>
+        <p><strong>Objective:</strong> Find all matching pairs of cards.</p>
+        <p>
+          <strong>Levels:</strong> The game consists of 10 levels. It starts
+          with 4 cards (two pairs) and increases the number of cards with each
+          level.
+        </p>
+        <p>
+          <strong>Scoring:</strong> Points are awarded for each level. Starting
+          with 1 point for the first level, each subsequent level awards one
+          more point than the previous one. For example, Level 2 awards 2
+          points, Level 3 awards 3 points, and so on, up to Level 10 which
+          awards 10 points.
+        </p>
+        <p>
+          <strong>Maximum Points:</strong> The maximum number of points that can
+          be earned in all levels is 55 points. (This is the sum of points for
+          each level: 1+2+3+4+5+6+7+8+9+10 = 55).
+        </p>
+        <p>
+          <strong>How to Play:</strong> On each level, find and select matching
+          pairs of cards. After finding all pairs on a level, you will move to
+          the next level. The game continues until reaching the tenth level or
+          if an incorrect pair is chosen.
+        </p>
+      </div>
+    </div>
+
     <script type="module" src="scripts.js"></script>
   </body>
 </html>
