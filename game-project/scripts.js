@@ -1,5 +1,29 @@
 import { generateCards } from "./create.js";
 
+// Dificult scale
+
+document.addEventListener("DOMContentLoaded", function () {
+  highlightLevel(currentLevel);
+});
+
+function highlightLevel(level) {
+  // Reset all style
+  for (let i = 1; i <= 10; i++) {
+    const levelSpan = document.getElementById(`level-${i}`);
+    if (levelSpan) {
+      levelSpan.style.fontSize = ""; // reset fonts
+      levelSpan.style.color = ""; // reset color
+    }
+  }
+
+  // Highlite current level
+  const currentLevelSpan = document.getElementById(`level-${level}`);
+  if (currentLevelSpan) {
+    currentLevelSpan.style.fontSize = "larger"; // Incrase size fonts
+    currentLevelSpan.style.color = "red"; // Change color
+  }
+}
+
 // Get element card
 
 const gameBoard = document.querySelector(".memory-game");
@@ -13,7 +37,8 @@ let matchedPairs = 0;
 function startGame() {
   modal.style.display = "none";
   startLevel();
-  startButton.removeEventListener("click", startGame); // Delite click after first start
+  startButton.removeEventListener("click", startGame);
+  highlightLevel(currentLevel); // Delite click after first start
 }
 
 function startLevel() {
@@ -22,6 +47,7 @@ function startLevel() {
   generateCards(pairCount, gameBoard);
   addCardListeners();
   adjustCardSize(pairCount);
+  highlightLevel(currentLevel);
 }
 
 function clearBoard() {
@@ -127,37 +153,30 @@ let firstCard, secondCard;
 // GAME RULES
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Получаем модальное окно
+  // Get elem modal window
   const modal = document.getElementById("rulesModal");
-
-  // Получаем кнопку, которая открывает модальное окно
+  // Get button game-rules
   const rulesBtn = document.querySelector(".rules-game");
-
-  // Получаем кнопку "Restart"
+  // Get button "Restart"
   const restartBtn = document.querySelector(".restart-game");
-
-  // Получаем элемент <span>, который закрывает модальное окно
+  // Get elem  <span>, clouse window
   const span = document.getElementsByClassName("close-button")[0];
-
-  // Когда пользователь нажимает на кнопку "Game Rules", открываем модальное окно
+  // User press button  "Game Rules", opened modal window
   rulesBtn.onclick = function () {
     modal.style.display = "block";
   };
-
-  // Когда пользователь нажимает на <span> (x), закрываем модальное окно
+  // User click <span> (x), window clouse
   span.onclick = function () {
     modal.style.display = "none";
   };
-
-  // Когда пользователь кликает вне модального окна, оно закрывается
+  // User click outside modal window (window clouse)
   window.onclick = function (event) {
     if (event.target == modal) {
       modal.style.display = "none";
     }
   };
-
-  // Логика для кнопки "Restart"
+  //  "Restart"
   restartBtn.onclick = function () {
-    location.reload(); // Перезагрузка страницы
+    location.reload(); // Reload window
   };
 });
