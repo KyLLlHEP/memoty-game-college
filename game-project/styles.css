@@ -6,15 +6,15 @@
 body {
   height: 100vh;
   display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
   background-color: #6a9e4e;
 }
-.memory-game {
-  /* width: 640px;
-  height: 640px;
-  margin: auto;
+.buttons-container {
   display: flex;
-  flex-wrap: wrap;
-  perspective: 1000px; */
+}
+.memory-game {
   width: 640px;
   height: 640px;
   margin: auto;
@@ -25,9 +25,6 @@ body {
   align-items: center;
 }
 .memory-card {
-  /* width: calc(25% - 10px);
-  height: calc(25% - 10px); */
-  /* height: calc(33.333% - 10px); */
   margin: 5px;
   position: relative;
   transform-style: preserve-3d;
@@ -69,7 +66,66 @@ button {
   border: 3px solid #f0b489;
   border-radius: 30px;
   background-color: #fdd8a8;
+  color: #3b2819;
   font-family: "Times New Roman", Times, serif;
   font-weight: bold;
   font-size: 24px;
+}
+
+/* HEADER CSS */
+.game-header {
+  width: inherit;
+  height: 150px;
+  text-align: center;
+  margin-bottom: 20px;
+  background-color: #641f16;
+  display: flex;
+  justify-content: center;
+}
+.header__difficult-scale {
+  width: 720px;
+  height: 110px;
+  margin-top: 20px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.scale-top,
+.scale-bottom {
+  height: 25px;
+  width: 100%;
+  background-color: #f0b489;
+}
+.scale-center {
+  width: 100%;
+  background-color: #fdd8a8;
+  text-align: center;
+}
+.scale-numbers {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  color: #3b2819;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 55px;
+  font-style: normal;
+  font-weight: bold;
+  letter-spacing: 150%;
+  margin: 0 5px;
+}
+
+.scale-numbers span {
+  margin: 0 5px;
+}
+
+.scale-arrow {
+  position: absolute;
+  top: -23px;
+  left: 30px;
+
+  width: 30px;
+  height: 30px;
 }
