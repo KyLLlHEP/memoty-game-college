@@ -1,5 +1,37 @@
 import { generateCards } from "./create.js";
 
+// USER NAME FORM
+const nameModal = document.getElementById("nameModal");
+const closeBtn = nameModal.querySelector(".close-button");
+const submitBtn = document.getElementById("submitName");
+function showNameModal() {
+  nameModal.style.display = "block";
+}
+
+// Close window click in cros
+closeBtn.onclick = function () {
+  nameModal.style.display = "none";
+};
+
+// Click out side window close
+window.onclick = function (event) {
+  if (event.target == nameModal) {
+    nameModal.style.display = "none";
+  }
+};
+
+// Click  "Submit"
+submitBtn.onclick = function () {
+  const playerName = document.getElementById("playerNameInput").value;
+  document.getElementById("player-name").querySelector("span").textContent =
+    playerName;
+  nameModal.style.display = "none";
+};
+// function askPlayerName() {
+//   const playerName = prompt("What's your name?");
+//   document.getElementById("player-name").querySelector("span").textContent =
+//     playerName;
+// }
 // Dificult scale
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -53,10 +85,21 @@ const startButton = document.querySelector(".start-game");
 let currentLevel = 1;
 let pairCount = 2;
 let matchedPairs = 0;
+let score = 0;
+
+// SCORE
+function updateScore() {
+  score += currentLevel; // Get point fpr level
+  document.getElementById("player-score").querySelector("span").textContent =
+    score;
+}
 
 function startGame() {
+  showNameModal();
+  askPlayerName();
   modal.style.display = "none";
   startLevel();
+
   startButton.removeEventListener("click", startGame);
   highlightLevel(currentLevel); // Delite click after first start
 }
@@ -68,6 +111,7 @@ function startLevel() {
   addCardListeners();
   adjustCardSize(pairCount);
   highlightLevel(currentLevel);
+  updateScore();
 }
 
 function clearBoard() {
@@ -122,6 +166,7 @@ function nextLevel() {
   if (currentLevel <= 10) {
     pairCount = currentLevel + 1;
     showLevelCompleteGif();
+    updateScore();
     startLevel();
   } else {
     console.log("Congragulation");

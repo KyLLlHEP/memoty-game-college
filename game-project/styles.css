@@ -175,3 +175,28 @@ p {
   font-size: 18px;
   padding-top: 10px;
 }
+.player-info {
+  padding: 40px;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+  padding-top: 10px;
+}
+#player-name {
+  color: yellow;
+  font-size: 32px;
+  padding: 5px;
+}
+#player-score {
+  color: red;
+  font-size: 32px;
+}
+#playerNameInput {
+  width: 95%;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+#submitName {
+  width: 100%;
+  padding: 10px;
+}
