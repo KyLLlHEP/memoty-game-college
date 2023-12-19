@@ -23,7 +23,27 @@ function highlightLevel(level) {
     currentLevelSpan.style.color = "red"; // Change color
   }
 }
+// SHOW GIFF LEVEL UP
+function showLevelCompleteGif() {
+  const gif = document.getElementById("level-complete-gif");
+  gif.style.display = "block"; // Show Giff
 
+  // Hide giff 1 second after
+  setTimeout(() => {
+    gif.style.display = "none";
+  }, 1000); // 1 second display
+}
+
+// END GAME GIFF
+function showEndGameGif() {
+  const gif = document.getElementById("end-game-gif");
+  gif.style.display = "block"; // Show giff
+
+  // Hide Giff
+  setTimeout(() => {
+    gif.style.display = "none";
+  }, 3000); // 3 second show timer
+}
 // Get element card
 
 const gameBoard = document.querySelector(".memory-game");
@@ -101,9 +121,11 @@ function nextLevel() {
   currentLevel++;
   if (currentLevel <= 10) {
     pairCount = currentLevel + 1;
+    showLevelCompleteGif();
     startLevel();
   } else {
     console.log("Congragulation");
+    showEndGameGif();
     // End game. Need video content add.
   }
 }
