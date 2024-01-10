@@ -29,6 +29,7 @@ body {
   position: relative;
   transform-style: preserve-3d;
   transition: transform 0.5s;
+  cursor: pointer;
 }
 
 .memory-card:active {
@@ -182,12 +183,12 @@ p {
   padding-top: 10px;
 }
 #player-name {
-  color: yellow;
+  color: purple;
   font-size: 32px;
   padding: 5px;
 }
 #player-score {
-  color: red;
+  color: white;
   font-size: 32px;
 }
 #playerNameInput {
