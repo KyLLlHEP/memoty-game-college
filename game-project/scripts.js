@@ -21,11 +21,28 @@ window.onclick = function (event) {
 };
 
 // Click  "Submit"
+// submitBtn.onclick = function () {
+//   const playerName = document.getElementById("playerNameInput").value;
+//   document.getElementById("player-name").querySelector("span").textContent =
+//     playerName;
+//   nameModal.style.display = "none";
+// };
+
 submitBtn.onclick = function () {
-  const playerName = document.getElementById("playerNameInput").value;
-  document.getElementById("player-name").querySelector("span").textContent =
-    playerName;
-  nameModal.style.display = "none";
+  const playerNameInput = document.getElementById("playerNameInput");
+  const playerName = playerNameInput.value;
+
+  // Checking for letters and numbers only
+  if (/^[a-zA-Z0-9]+$/.test(playerName)) {
+    document.getElementById("player-name").querySelector("span").textContent =
+      playerName;
+    nameModal.style.display = "none";
+  } else {
+    //If anything other than letters and numbers are entered, perform the necessary steps
+    alert("The player's name must contain only letters and numbers.");
+
+    playerNameInput.value = "";
+  }
 };
 
 // Dificult scale
