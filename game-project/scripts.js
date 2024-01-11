@@ -27,11 +27,7 @@ submitBtn.onclick = function () {
     playerName;
   nameModal.style.display = "none";
 };
-// function askPlayerName() {
-//   const playerName = prompt("What's your name?");
-//   document.getElementById("player-name").querySelector("span").textContent =
-//     playerName;
-// }
+
 // Dificult scale
 
 document.addEventListener("DOMContentLoaded", function () {
