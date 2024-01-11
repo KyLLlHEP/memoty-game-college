@@ -20,8 +20,8 @@ export const images = [
 export function generateCards(level, gameBoard) {
   const pairs = level;
   let selectedImages = getRandomImages(images, pairs);
-  selectedImages = [...selectedImages, ...selectedImages]; // Дублируем для создания пар
-  selectedImages = shuffle(selectedImages); // Перемешиваем картинки
+  selectedImages = [...selectedImages, ...selectedImages]; // Duplicate to create pairs
+  selectedImages = shuffle(selectedImages); //Shuffle the pictures
 
   gameBoard.innerHTML = "";
 
