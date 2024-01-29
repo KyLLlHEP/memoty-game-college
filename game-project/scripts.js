@@ -26,7 +26,7 @@ submitBtn.onclick = function () {
   const errorModal = document.getElementById("error-message");
   const errorTextElement = document.getElementById("error-text");
   // Checking for letters and numbers only
-  if (/^[a-zA-Z0-9]+$/.test(playerName)) {
+  if (/^[a-zA-Z0-9]+$/.test(playerName) && !/\s/.test(playerName)) {
     document.getElementById("player-name").querySelector("span").textContent =
       playerName;
     nameModal.style.display = "none";
@@ -34,7 +34,7 @@ submitBtn.onclick = function () {
   } else {
     //If anything other than letters and numbers are entered, perform the necessary steps
     errorTextElement.textContent =
-      "The player's name must contain only letters and numbers.";
+      "The player's name must contain only letters and numbers, and no white spaces. Put right name again please.";
     errorModal.style.display = "flex"; // Show error modal
 
     playerNameInput.value = "";
