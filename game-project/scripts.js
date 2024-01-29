@@ -20,26 +20,22 @@ window.onclick = function (event) {
   }
 };
 
-// Click  "Submit"
-// submitBtn.onclick = function () {
-//   const playerName = document.getElementById("playerNameInput").value;
-//   document.getElementById("player-name").querySelector("span").textContent =
-//     playerName;
-//   nameModal.style.display = "none";
-// };
-
 submitBtn.onclick = function () {
   const playerNameInput = document.getElementById("playerNameInput");
   const playerName = playerNameInput.value;
-
+  const errorModal = document.getElementById("error-message");
+  const errorTextElement = document.getElementById("error-text");
   // Checking for letters and numbers only
   if (/^[a-zA-Z0-9]+$/.test(playerName)) {
     document.getElementById("player-name").querySelector("span").textContent =
       playerName;
     nameModal.style.display = "none";
+    errorModal.style.display = "none";
   } else {
     //If anything other than letters and numbers are entered, perform the necessary steps
-    alert("The player's name must contain only letters and numbers.");
+    errorTextElement.textContent =
+      "The player's name must contain only letters and numbers.";
+    errorModal.style.display = "flex"; // Show error modal
 
     playerNameInput.value = "";
   }
