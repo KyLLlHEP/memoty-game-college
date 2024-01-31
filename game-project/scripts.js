@@ -32,7 +32,7 @@ submitBtn.onclick = function () {
     nameModal.style.display = "none";
     errorModal.style.display = "none";
   } else {
-    //If anything other than letters and numbers are entered, perform the necessary steps
+    //If anything other than letters and numbers , perform the necessary steps
     errorTextElement.textContent =
       "The player's name must contain only letters and numbers, and no white spaces. Put right name again please.";
     errorModal.style.display = "flex"; // Show error modal
